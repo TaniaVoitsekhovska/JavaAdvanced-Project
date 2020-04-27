@@ -1,26 +1,27 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "subjects")
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
+    @Column(name = "subject_id")
     private int id;
 
     private String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @ManyToMany(mappedBy = "examSubjects")
+    private Set<Faculty> faculties;
 
     public Subject() {
     }
 
-    public Subject(String name, User user) {
+    public Subject(String name, Set<Faculty> faculties) {
         this.name = name;
-        this.user = user;
+        this.faculties = faculties;
     }
 
     public int getId() {
@@ -39,11 +40,11 @@ public class Subject {
         this.name = name;
     }
 
-    public User getUser() {
-        return user;
+    public Set<Faculty> getFaculties() {
+        return faculties;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setFaculties(Set<Faculty> faculties) {
+        this.faculties = faculties;
     }
 }
