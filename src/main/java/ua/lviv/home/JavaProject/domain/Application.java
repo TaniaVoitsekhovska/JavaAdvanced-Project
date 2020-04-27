@@ -9,7 +9,7 @@ import java.util.Map;
 public class Application {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "application_id")
+//    @Column(name = "application_id")
     private int id;
 
     @ManyToOne
@@ -21,21 +21,21 @@ public class Application {
     private Speciality speciality;
 
     @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "zno_marks")
+    @CollectionTable(name = "marks")
     @MapKeyColumn(name = "subject_id")
     private Map<Subject, Integer> znoMarks;
 
     @Column
-    private int attMark;
+    private int mark;
 
 
     public Application() {	}
 
-    public Application(Applicant applicant, Speciality speciality, Map<Subject, Integer> znoMarks, int attMark) {
+    public Application(Applicant applicant, Speciality speciality, Map<Subject, Integer> znoMarks, int mark) {
         this.applicant = applicant;
         this.speciality = speciality;
         this.znoMarks = znoMarks;
-        this.attMark = attMark;
+        this.mark = mark;
     }
 
     public int getId() {
@@ -70,11 +70,11 @@ public class Application {
         this.znoMarks = znoMarks;
     }
 
-    public int getAttMark() {
-        return attMark;
+    public int getMark() {
+        return mark;
     }
 
-    public void setAttMark(int attMark) {
-        this.attMark = attMark;
+    public void setMark(int mark) {
+        this.mark = mark;
     }
 }

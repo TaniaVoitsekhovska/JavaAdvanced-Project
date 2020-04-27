@@ -1,7 +1,6 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
-import java.util.Set;
 
 @Entity
 @Table(name = "speciality")
@@ -9,36 +8,29 @@ public class Speciality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "speciality_id")
-    private Integer id;
+    private int id;
     @Column
     private String title;
     @Column
-    private Integer enrollmentPlan;
+    private int enrollmentPlan;
 
     @ManyToOne
     @JoinColumn(name = "faculty_id", nullable = false)
     private Faculty faculty;
 
-    @ManyToMany(mappedBy = "applicantSpecialities")
-    private Set<Applicant> applicants;
+    public Speciality() {
+    }
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "speciality")
-    @Column(nullable = false)
-    private Set<Application> applications;
-
-
-    public Speciality() {	}
-
-    public Speciality(String title, Integer enrollmentPlan) {
+    public Speciality(String title, int enrollmentPlan) {
         this.title = title;
         this.enrollmentPlan = enrollmentPlan;
     }
 
-    public Integer getId() {
+    public int getId() {
         return id;
     }
 
-    public void setId(Integer id) {
+    public void setId(int id) {
         this.id = id;
     }
 
@@ -50,11 +42,11 @@ public class Speciality {
         this.title = title;
     }
 
-    public Integer getEnrollmentPlan() {
+    public int getEnrollmentPlan() {
         return enrollmentPlan;
     }
 
-    public void setEnrollmentPlan(Integer enrollmentPlan) {
+    public void setEnrollmentPlan(int enrollmentPlan) {
         this.enrollmentPlan = enrollmentPlan;
     }
 
@@ -64,22 +56,6 @@ public class Speciality {
 
     public void setFaculty(Faculty faculty) {
         this.faculty = faculty;
-    }
-
-    public Set<Applicant> getApplicants() {
-        return applicants;
-    }
-
-    public void setApplicants(Set<Applicant> applicants) {
-        this.applicants = applicants;
-    }
-
-    public Set<Application> getApplications() {
-        return applications;
-    }
-
-    public void setApplications(Set<Application> applications) {
-        this.applications = applications;
     }
 
 }

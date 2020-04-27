@@ -10,12 +10,13 @@ public class Faculty {
     @GeneratedValue(strategy = GenerationType.AUTO)
     private int id;
 
+    @Column
     private String name;
 
-    @ManyToMany(cascade = CascadeType.ALL)
-    @JoinTable(name = "subject_of_faculty", joinColumns = @JoinColumn(name = "id"),
-            inverseJoinColumns = @JoinColumn(name = "subject_id"))
-    private Set<Subject> examSubjects;
+    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "faculty")
+    @Column(nullable = false)
+    private Set<Speciality> specialities;
+
 
     public Faculty() {
     }
@@ -40,11 +41,11 @@ public class Faculty {
         this.name = name;
     }
 
-    public Set<Subject> getExamSubjects() {
-        return examSubjects;
+    public Set<Speciality> getSpecialities() {
+        return specialities;
     }
 
-    public void setExamSubjects(Set<Subject> examSubjects) {
-        this.examSubjects = examSubjects;
+    public void setSpecialities(Set<Speciality> specialities) {
+        this.specialities = specialities;
     }
 }
