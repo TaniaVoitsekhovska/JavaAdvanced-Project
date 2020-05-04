@@ -1,27 +1,38 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
-import java.util.Map;
-import java.util.Set;
+import java.sql.Timestamp;
 
 @Entity
 @Table(name = "applicant")
 public class Applicant {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "applicant_speciality")
-    @MapKeyColumn(name = "speciality_id")
-    private Map<Speciality, User> specialityUserMap;
+    @OneToOne
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "applicant")
-    @Column
-    private Set<Application> applications;
+    @OneToOne
+    @JoinColumn(name = "faculty_id", nullable = false)
+    private Faculty faculty;
 
+    @OneToOne
+    @JoinColumn(name = "speciality_id", nullable = false)
+    private Speciality speciality;
+
+    @Column(name = "registration_date")
+    private Timestamp date;
 
     public Applicant() {
+    }
+
+    public Applicant(User user, Faculty faculty, Speciality speciality, Timestamp date) {
+        this.user = user;
+        this.faculty = faculty;
+        this.speciality = speciality;
+        this.date = date;
     }
 
     public int getId() {
@@ -32,19 +43,35 @@ public class Applicant {
         this.id = id;
     }
 
-    public Set<Application> getApplications() {
-        return applications;
+    public User getUser() {
+        return user;
     }
 
-    public void setApplications(Set<Application> applications) {
-        this.applications = applications;
+    public void setUser(User user) {
+        this.user = user;
     }
 
-    public Map<Speciality, User> getSpecialityUserMap() {
-        return specialityUserMap;
+    public Faculty getFaculty() {
+        return faculty;
     }
 
-    public void setSpecialityUserMap(Map<Speciality, User> specialityUserMap) {
-        this.specialityUserMap = specialityUserMap;
+    public void setFaculty(Faculty faculty) {
+        this.faculty = faculty;
+    }
+
+    public Speciality getSpeciality() {
+        return speciality;
+    }
+
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
+    }
+
+    public Timestamp getDate() {
+        return date;
+    }
+
+    public void setDate(Timestamp date) {
+        this.date = date;
     }
 }

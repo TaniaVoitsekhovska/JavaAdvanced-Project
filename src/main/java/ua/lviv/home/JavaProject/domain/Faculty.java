@@ -7,14 +7,14 @@ import java.util.Set;
 @Table(name = "faculties")
 public class Faculty {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
     private String name;
 
-    @OneToMany(cascade = CascadeType.ALL, fetch = FetchType.LAZY, mappedBy = "faculty")
-    @Column(nullable = false)
+    @OneToMany
+    @JoinColumn(name = "speciality_id", nullable = false)
     private Set<Speciality> specialities;
 
 

@@ -1,22 +1,23 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
+import java.util.Set;
 
 @Entity
 @Table(name = "speciality")
 public class Speciality {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(name = "speciality_id")
+    @Column
     private int id;
     @Column
     private String title;
-    @Column
+    @Column(name = "enrollment_plan")
     private int enrollmentPlan;
 
-    @ManyToOne
-    @JoinColumn(name = "faculty_id", nullable = false)
-    private Faculty faculty;
+    @ManyToMany
+    @JoinColumn(name = "subject_id",nullable = false)
+    private Set<Subject> subjects;
 
     public Speciality() {
     }
@@ -50,12 +51,11 @@ public class Speciality {
         this.enrollmentPlan = enrollmentPlan;
     }
 
-    public Faculty getFaculty() {
-        return faculty;
+    public Set<Subject> getSubjects() {
+        return subjects;
     }
 
-    public void setFaculty(Faculty faculty) {
-        this.faculty = faculty;
+    public void setSubjects(Set<Subject> subjects) {
+        this.subjects = subjects;
     }
-
 }

@@ -8,7 +8,7 @@ import java.util.Set;
 @Table(name = "users")
 public class User {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column(name = "first_name")
@@ -28,7 +28,7 @@ public class User {
     private String address;
 
     @Enumerated(EnumType.ORDINAL)
-    @ElementCollection(targetClass = AccessLevel.class, fetch = FetchType.EAGER)
+    @ElementCollection(targetClass = AccessLevel.class, fetch = FetchType.LAZY)
     @Column(name = "role")
     private Set<AccessLevel> roles;
 

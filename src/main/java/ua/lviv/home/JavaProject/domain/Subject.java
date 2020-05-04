@@ -6,14 +6,11 @@ import javax.persistence.*;
 @Table(name = "subjects")
 public class Subject {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    @Column(name = "subject_id")
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column
     private int id;
 
     private String name;
-    @ManyToOne
-    @JoinColumn(name = "speciality_id")
-    private Speciality speciality;
 
     public Subject() {
     }
