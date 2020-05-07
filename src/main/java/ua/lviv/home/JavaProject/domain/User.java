@@ -29,6 +29,10 @@ public class User {
 
     private String username;
 
+    private boolean isEmailVerified;
+
+    private String verifyEmailHash;
+
     @Enumerated(EnumType.ORDINAL)
     @ElementCollection(targetClass = AccessLevel.class, fetch = FetchType.EAGER)
     @Column(name = "role")
@@ -127,5 +131,21 @@ public class User {
 
     public void setRoles(Set<AccessLevel> roles) {
         this.roles = roles;
+    }
+
+    public boolean isEmailVerified() {
+        return isEmailVerified;
+    }
+
+    public void setEmailVerified(boolean emailVerified) {
+        isEmailVerified = emailVerified;
+    }
+
+    public String getVerifyEmailHash() {
+        return verifyEmailHash;
+    }
+
+    public void setVerifyEmailHash(String verifyEmailHash) {
+        this.verifyEmailHash = verifyEmailHash;
     }
 }
