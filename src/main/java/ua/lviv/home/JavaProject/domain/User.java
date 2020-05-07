@@ -27,16 +27,18 @@ public class User {
 
     private String address;
 
+    private String username;
+
     @Enumerated(EnumType.ORDINAL)
-    @ElementCollection(targetClass = AccessLevel.class, fetch = FetchType.LAZY)
+    @ElementCollection(targetClass = AccessLevel.class, fetch = FetchType.EAGER)
     @Column(name = "role")
     private Set<AccessLevel> roles;
 
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password, LocalDate dateOfBirth,
-                String gender, String address) {
+    public User(String firstName, String lastName, String email, String password,
+                LocalDate dateOfBirth, String gender, String address, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
@@ -44,6 +46,7 @@ public class User {
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.address = address;
+        this.username = username;
     }
 
     public int getId() {
@@ -108,6 +111,14 @@ public class User {
 
     public void setAddress(String address) {
         this.address = address;
+    }
+
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 
     public Set<AccessLevel> getRoles() {
