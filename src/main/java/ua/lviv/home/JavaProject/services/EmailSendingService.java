@@ -10,7 +10,7 @@ import org.springframework.stereotype.Service;
 public class EmailSendingService {
 
     @Autowired
-    private JavaMailSender javaMailSender;
+    private JavaMailSender mailSender;
 
     @Value("${appBaseDomain}")
     private String appBaseDomain;
@@ -29,7 +29,7 @@ public class EmailSendingService {
         simpleMailMessage.setText(text + link);
 
         try {
-            javaMailSender.send(simpleMailMessage);
+            mailSender.send(simpleMailMessage);
         } catch (Exception e) {
             e.printStackTrace();
         }
