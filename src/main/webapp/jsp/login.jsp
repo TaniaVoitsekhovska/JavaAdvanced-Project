@@ -7,7 +7,7 @@
     <link href="css/app.css" rel="stylesheet" type="text/css">
 </head>
 <body class="security-app">
-
+<jsp:include page="navbar.jsp"/>
 <form action="${contextPath}/login" method='POST'>
 
     <div class="lc-block">
