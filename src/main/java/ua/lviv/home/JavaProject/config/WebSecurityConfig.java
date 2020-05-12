@@ -30,12 +30,15 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
     @Override
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
+                .antMatchers("/faculties/create","/faculties/save",
+                        "/subjects/create","/subjects/save").hasRole( "ADMIN")
                 .antMatchers("/home").hasAnyRole("USER", "ADMIN")
                 .anyRequest().permitAll()
                 .and()
                 .formLogin().loginPage("/login").loginProcessingUrl("/login")
                 .usernameParameter("username").passwordParameter("password")
-                .defaultSuccessUrl("/home", true).and()
+                .defaultSuccessUrl("/home", true)
+                .and()
                 .logout().logoutSuccessUrl("/login?logout")
                 .and()
                 .exceptionHandling().accessDeniedPage("/403")
