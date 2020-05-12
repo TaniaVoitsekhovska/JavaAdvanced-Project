@@ -12,11 +12,15 @@ public class Subject {
 
     private String name;
 
+    @Column(name = "max_grade")
+    private int maxGrade;
+
     public Subject() {
     }
 
-    public Subject(String name) {
+    public Subject(String name, int maxGrade) {
         this.name = name;
+        this.maxGrade = maxGrade;
     }
 
     public int getId() {
@@ -33,5 +37,13 @@ public class Subject {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public int getMaxGrade() {
+        return maxGrade;
+    }
+
+    public void setMaxGrade(int maxGrade) {
+        this.maxGrade = maxGrade;
     }
 }
