@@ -10,12 +10,14 @@ public class Speciality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
-    @Column
+
+    @Column(unique=true)
     private String title;
+
     @Column(name = "enrollment_plan")
     private int enrollmentPlan;
 
-    @ManyToMany
+    @OneToMany
     @JoinColumn(name = "subject_id",nullable = false)
     private Set<Subject> subjects;
 

@@ -10,6 +10,7 @@ public class Subject {
     @Column
     private int id;
 
+    @Column(unique=true)
     private String name;
 
     @Column(name = "max_grade")
