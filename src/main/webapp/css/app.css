@@ -1,9 +1,9 @@
 body.security-app {
     text-align: center;
-    overflow: hidden;
     height: 100%;
     width:100%;
     background:#edecec;
+    padding-top: 70px;
 }
 
 
@@ -50,7 +50,7 @@ h1{
     color:crimson;
 }
 
-input[type="text"], input[type="password"], input[type="email"]  {
+input[type="text"], input[type="password"], input[type="email"], input[type="number"]  {
     display: block;
     margin: 0;
     width: 100%;
@@ -112,7 +112,7 @@ input[type="text"], input[type="password"], input[type="email"]  {
     border: 1px solid transparent;
     border-radius: 2px;
 }
-.alert-normal{
+.alert-normal {
     padding: 15px;
     font-size: 16px;
     margin: 18px;
@@ -121,5 +121,7 @@ input[type="text"], input[type="password"], input[type="email"]  {
     background-color: #d9edf7;
     border-color: #d9edf7;
     color: #2196f3;
-
+}
+.user-list {
+    text-align: left;
 }
