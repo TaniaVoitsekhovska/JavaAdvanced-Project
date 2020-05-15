@@ -7,8 +7,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
-import ua.lviv.home.JavaProject.dtos.FacultyRegisterRequest;
+import ua.lviv.home.JavaProject.domain.Faculty;
 import ua.lviv.home.JavaProject.services.FacultyService;
+
+import java.util.List;
 
 @Controller
 @RequestMapping("/faculties")
@@ -22,19 +24,22 @@ public class FacultiesController {
     }
 
     @GetMapping("/create")
-    public String create() {
+    public String create(Model model) {
+        model.addAttribute("faculty", new Faculty());
+        List<Faculty> faculties = facultyService.findAll();
+        model.addAttribute("faculties",faculties );
         return "createFaculty";
     }
 
     @PostMapping("/save")
-    public String save(@ModelAttribute FacultyRegisterRequest facultyRegisterRequest) {
-        facultyService.create(facultyRegisterRequest);
+    public String save(@ModelAttribute Faculty faculty) {
+        facultyService.create(faculty);
         return "redirect:/faculties/create?success";
     }
 
     @GetMapping("/all")
     public String all(Model model) {
-        model.addAttribute("faculties", facultyService.findAll());
+
         return "allFaculties";
     }
 }

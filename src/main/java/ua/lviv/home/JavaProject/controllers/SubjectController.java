@@ -6,36 +6,34 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
 import ua.lviv.home.JavaProject.domain.Subject;
 import ua.lviv.home.JavaProject.services.SubjectService;
 
+import java.util.List;
+
+
 @Controller
-@RequestMapping("/subjects")
 public class SubjectController {
 
     private final SubjectService subjectService;
 
     @Autowired
-
     public SubjectController(SubjectService subjectService) {
         this.subjectService = subjectService;
     }
 
-    @GetMapping("/create")
-    public String create() {
+    @GetMapping("/subjects/create")
+    public String create(Model model) {
+        model.addAttribute("subjectDto", new Subject());
+        List<Subject> subjects= subjectService.findAllSubjects();
+        model.addAttribute("subjects",subjects);
         return "createSubjects";
     }
 
-    @PostMapping("/save")
-    public String save(@ModelAttribute Subject subject) {
-        subjectService.create(subject);
-        return "redirect:/subjects/create?success";
-    }
-
-    @GetMapping("/all")
-    public String all(Model model) {
-        model.addAttribute("subjects", subjectService.findAllSubjects());
-        return "allSubjects";
+    @PostMapping("/subjects/save")
+    public String save(Model model,@ModelAttribute("subjectDto") Subject subject) {
+        model.addAttribute("subjectDto",subject);
+        subjectService.save(subject);
+        return "redirect:/subjects/create";
     }
 }
