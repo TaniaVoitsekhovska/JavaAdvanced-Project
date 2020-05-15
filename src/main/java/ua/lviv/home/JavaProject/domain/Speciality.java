@@ -1,7 +1,6 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
-import java.util.Map;
 import java.util.Set;
 
 @Entity
