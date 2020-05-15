@@ -7,10 +7,9 @@ import javax.persistence.*;
 public class Subject {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private int id;
 
-    @Column(unique=true)
+    @Column(unique = true)
     private String name;
 
     @Column(name = "max_grade")

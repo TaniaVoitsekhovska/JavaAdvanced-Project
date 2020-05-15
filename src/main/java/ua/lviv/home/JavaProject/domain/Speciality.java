@@ -1,6 +1,7 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
+import java.util.Map;
 import java.util.Set;
 
 @Entity
@@ -17,8 +18,10 @@ public class Speciality {
     @Column(name = "enrollment_plan")
     private int enrollmentPlan;
 
-    @OneToMany
-    @JoinColumn(name = "subject_id",nullable = false)
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "subject_speciality")
+    @MapKeyColumn(name = "subject_id")
     private Set<Subject> subjects;
 
     public Speciality() {
