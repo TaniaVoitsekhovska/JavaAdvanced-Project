@@ -4,7 +4,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import ua.lviv.home.JavaProject.daos.FacultyRepository;
 import ua.lviv.home.JavaProject.domain.Faculty;
-import ua.lviv.home.JavaProject.dtos.FacultyRegisterRequest;
 
 import java.util.List;
 
@@ -18,9 +17,7 @@ public class FacultyService {
         this.facultyRepository = facultyRepository;
     }
 
-    public void create(FacultyRegisterRequest facultyRegisterRequest) {
-        Faculty faculty =new Faculty();
-        faculty.setName(facultyRegisterRequest.getName());
+    public void create(Faculty faculty) {
         facultyRepository.save(faculty);
     }
 

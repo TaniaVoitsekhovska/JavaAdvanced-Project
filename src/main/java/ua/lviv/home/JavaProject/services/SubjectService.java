@@ -13,16 +13,15 @@ public class SubjectService {
     private final SubjectRepository subjectRepository;
 
     @Autowired
-
     public SubjectService(SubjectRepository subjectRepository) {
         this.subjectRepository = subjectRepository;
     }
 
-    public void create(Subject subject){
+    public void save(Subject subject) {
         subjectRepository.save(subject);
     }
 
-    public List<Subject> findAllSubjects(){
+    public List<Subject> findAllSubjects() {
         return subjectRepository.findAll();
     }
 }
