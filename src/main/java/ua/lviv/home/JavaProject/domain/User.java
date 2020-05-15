@@ -17,8 +17,10 @@ public class User {
     @Column(name = "last_name")
     private String lastName;
 
+    @Column(unique=true)
     private String email;
 
+    @Column(unique=true)
     private String password;
 
     private LocalDate dateOfBirth;
@@ -27,6 +29,7 @@ public class User {
 
     private String address;
 
+    @Column(unique=true)
     private String username;
 
     private boolean isEmailVerified;

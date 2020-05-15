@@ -10,11 +10,12 @@ public class Faculty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
-    @Column
+    @Column(unique=true)
     private String name;
 
-    @OneToMany
-    @JoinColumn(name = "speciality_id", nullable = false)
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "speciality_faculty")
+    @MapKeyColumn(name = "speciality_id")
     private Set<Speciality> specialities;
 
 

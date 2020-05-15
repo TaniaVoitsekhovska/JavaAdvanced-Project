@@ -10,13 +10,17 @@ public class Speciality {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column
     private int id;
-    @Column
+
+    @Column(unique=true)
     private String title;
+
     @Column(name = "enrollment_plan")
     private int enrollmentPlan;
 
-    @ManyToMany
-    @JoinColumn(name = "subject_id",nullable = false)
+
+    @ElementCollection(fetch = FetchType.EAGER)
+    @CollectionTable(name = "subject_speciality")
+    @MapKeyColumn(name = "subject_id")
     private Set<Subject> subjects;
 
     public Speciality() {
