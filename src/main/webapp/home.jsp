@@ -4,15 +4,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <meta name="description" content="">
-    <meta name="author" content="">
+
     <%--<link rel="icon" href="/docs/4.0/assets/img/favicons/favicon.ico">--%>
     <title>Welcome to UNIVERSITY</title>
     <link rel="canonical" href="https://getbootstrap.com/docs/4.0/examples/carousel/">
     <link href="https://getbootstrap.com/docs/4.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link href="css/home.css" rel="stylesheet">
+    <link href="css/home.css" rel="stylesheet" type="text/css">
 </head>
 <body class="security-app">
 <header>
@@ -163,10 +160,7 @@
         <hr class="featurette-divider">
     </div>
 
-    <footer class="container">
-        <p class="float-right"><a href="">Back to top</a></p>
-        <p>&copy; 2020 Company, Inc. &middot; <a href="/contacts">Contacts</a> &middot; <a href="/contactUs">Contact US</a></p>
-    </footer>
+    <jsp:include page="footer.jsp"/>
 </main>
 </body>
 </html>

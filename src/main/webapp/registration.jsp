@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="/css/app.css" rel="stylesheet" type="text/css">
 </head>
 <body class="security-app">
 <jsp:include page="navbar.jsp"/>
@@ -61,7 +61,8 @@
     <input type="hidden" name="${_csrf.parameterName}"
            value="${_csrf.token}"/>
 </form:form>
-
+<br>
+<jsp:include page="footer.jsp"/>
 
 </body>
 </html>

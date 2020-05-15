@@ -7,8 +7,6 @@
           crossorigin="anonymous">
 </head>
 <body>
-<div>
-</div>
 <nav class="navbar navbar-expand-lg navbar-dark fixed-top bg-dark">
     <a class="navbar-brand" href="/">University</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse"
@@ -19,9 +17,6 @@
 
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mr-auto">
-                <li class="nav-item">
-                    <a class="nav-link" href="/faculties/all">Faculties </a>
-                </li>
             <security:authorize access="hasRole('ROLE_ADMIN')">
                 <li class="nav-item">
                     <a class="nav-link" href="/faculties/create">Create faculty </a>
@@ -29,12 +24,22 @@
             </security:authorize>
                 <security:authorize access="hasRole('ROLE_ADMIN')">
                     <li class="nav-item">
-                        <a class="nav-link" href="/subjects/create">Create subject </a>
+                        <a class="nav-link" href="/specialities/create">Create speciality </a>
                     </li>
                 </security:authorize>
+            <security:authorize access="hasRole('ROLE_ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/subjects/create">Create subject </a>
+                </li>
+            </security:authorize>
+            <security:authorize access="hasRole('ROLE_ADMIN')">
+                <li class="nav-item">
+                    <a class="nav-link" href="/allUsers">User list </a>
+                </li>
+            </security:authorize>
                 <security:authorize access="hasRole('ROLE_USER')">
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact us</a>
+                <a class="nav-link" href="/cabinet">Cabinet</a>
             </li>
                 </security:authorize>
         </ul>
