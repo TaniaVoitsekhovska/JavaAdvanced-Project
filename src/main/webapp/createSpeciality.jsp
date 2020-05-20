@@ -8,18 +8,19 @@
 <html>
 <head>
     <title>Create Speciality</title>
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link href="/css/createLook.css" rel="stylesheet" type="text/css">
+    <link href="/css/error.css" rel="stylesheet" type="text/css">
 </head>
 <body class="security-app">
 
 <jsp:include page="navbar.jsp"/>
-<div class="container" style="margin-top: 100px">
+<div class="container">
     <div class="row">
         <div class="col-sm">
         </div>
         <div class="col-sm">
             <h3>New speciality</h3>
-            <form:form action="/specialities/save" modelAttribute="speciality" method="POST"
+            <form:form action="/specialities/save" modelAttribute="specialityDto" method="POST"
                        enctype="multipart/form-data">
                 <spring:bind path="title">
                     <div class="form-group">
@@ -27,6 +28,7 @@
                         <form:input path="title" type="text" id="formGroupExampleInput" class="form-control"
                                     placeholder="title"
                                     name="title" autofocus="true"/>
+                        <form:errors path="title" cssClass="error"/>
                     </div>
                 </spring:bind>
                 <spring:bind path="enrollmentPlan">
@@ -34,6 +36,7 @@
                         <label for="formGroupExampleInput2">Enrollment plan</label>
                         <form:input path="enrollmentPlan" type="number" id="formGroupExampleInput2" class="form-control"
                                     placeholder="enrollment plan" name="enrollmentPlan" autofocus="true"/>
+                        <form:errors path="enrollmentPlan" cssClass="error"/>
                     </div>
                 </spring:bind>
 
@@ -66,9 +69,13 @@
                     <td><c:out value="${speciality.id}"/></td>
                     <td><c:out value="${speciality.title}"/></td>
                     <td><c:out value="${speciality.enrollmentPlan}"/></td>
-                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span
-                            class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span
-                            class="glyphicon glyphicon-remove"></span> Del</a></td>
+                    <td class="text-center">
+                        <a class='btn btn-info btn-xs' href="/specialities/edit/${speciality.id}"><span
+                                class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a href="/specialities/delete/${speciality.id}" class="btn btn-danger btn-xs"
+                           onclick="if (confirm('Are you sure you want to delete?'))
+                               form.action='/Config?pg=FIBiller&amp;cmd=delete'; else return false;">
+                            <span class="glyphicon glyphicon-remove"></span> Del</a></td>
                 </tr>
             </c:forEach>
             </tbody>
