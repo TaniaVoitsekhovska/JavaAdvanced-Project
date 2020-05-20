@@ -21,7 +21,19 @@ public class FacultyService {
         facultyRepository.save(faculty);
     }
 
+    public Faculty findFacultyById(int id){
+        return facultyRepository.findById(id).orElse(null);
+    }
+
     public List<Faculty> findAll(){
         return facultyRepository.findAll();
+    }
+
+    public void deleteFaculty(int id){
+        facultyRepository.deleteById(id);
+    }
+
+    public void updateFaculty(int id, String name){
+        facultyRepository.updateFacultyById(name,id);
     }
 }

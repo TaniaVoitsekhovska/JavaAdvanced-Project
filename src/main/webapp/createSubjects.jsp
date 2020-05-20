@@ -8,13 +8,14 @@
 <html>
 <head>
     <title>Create Subject</title>
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
-    <link href="/css/allSubjects.css" rel="stylesheet" type="text/css">
+    <link href="/css/createLook.css" rel="stylesheet" type="text/css">
+    <link href="/css/error.css" rel="stylesheet" type="text/css">
+
 </head>
 <body class="security-app">
 
 <jsp:include page="navbar.jsp"/>
-<div class="container" style="margin-top: 100px">
+<div class="container">
     <div class="row">
         <div class="col-sm">
         </div>
@@ -27,13 +28,15 @@
                         <form:input path="name" type="text" id="formGroupExampleInput" class="form-control"
                                     placeholder="name"
                                     name="name" autofocus="true"/>
+                        <form:errors path="name" cssClass="error"/>
                     </div>
                 </spring:bind>
-                <spring:bind path="name">
+                <spring:bind path="maxGrade">
                     <div class="form-group">
                         <label for="formGroupExampleInput2">Max grade</label>
                         <form:input path="maxGrade" type="number" id="formGroupExampleInput2" class="form-control"
                                     placeholder="max grade" name="maxGrade" autofocus="true"/>
+                        <form:errors path="maxGrade" cssClass="error"/>
                     </div>
                 </spring:bind>
 
@@ -48,7 +51,8 @@
     </div>
 </div>
 <br>
-<h2>All specialities</h2>
+
+<h2>All subjects</h2>
 <div class="container" align="middle">
     <div class="row col-md-6 col-md-offset-2 custyle">
         <table class="table table-striped custab">
@@ -62,13 +66,18 @@
             </thead>
             <tbody>
             <c:forEach items="${subjects}" var="subject">
-                <tr class="table" >
+                <tr class="table">
                     <td><c:out value="${subject.id}"/></td>
                     <td><c:out value="${subject.name}"/></td>
                     <td><c:out value="${subject.maxGrade}"/></td>
-                    <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span
-                            class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span
-                            class="glyphicon glyphicon-remove"></span> Del</a></td>
+                    <td class="text-center">
+                        <a class='btn btn-info btn-xs' href="/subjects/edit/${subject.id}"><span
+                                class="glyphicon glyphicon-edit"></span>Edit</a>
+                        <a href="/subjects/delete/${subject.id}" class="btn btn-danger btn-xs"
+                           onclick="if (confirm('Are you sure you want to delete?'))
+                               form.action='/Config?pg=FIBiller&amp;cmd=delete'; else return false;"><span
+                                class="glyphicon glyphicon-remove"></span>Del</a>
+                    </td>
                 </tr>
             </c:forEach>
             </tbody>

@@ -8,19 +8,20 @@
 <html>
 <head>
     <title>Create Faculty</title>
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
+    <link href="/css/createLook.css" rel="stylesheet" type="text/css">
+    <link href="/css/error.css" rel="stylesheet" type="text/css">
 
 </head>
 <body class="security-app">
 <jsp:include page="navbar.jsp"/>
 
-<div class="container" style="margin-top: 100px">
+<div class="container">
     <div class="row">
         <div class="col-sm">
         </div>
         <div class="col-sm">
-            <h3>New speciality</h3>
-            <form:form action="/faculty/save" modelAttribute="faculty" method="POST"
+            <h3>New faculty</h3>
+            <form:form action="/faculty/save" modelAttribute="facultyDto" method="POST"
                        enctype="multipart/form-data">
                 <spring:bind path="name">
                     <div class="form-group">
@@ -28,6 +29,7 @@
                         <form:input path="name" type="text" id="formGroupExampleInput" class="form-control"
                                     placeholder="name"
                                     name="name" autofocus="true"/>
+                        <form:errors path="name" cssClass="error"/>
                     </div>
                 </spring:bind>
                 <br>
@@ -44,30 +46,35 @@
 
 
 <h2>All faculties</h2>
-    <div class="container" align="middle">
-        <div class="row col-md-6 col-md-offset-2 custyle">
-            <table class="table table-striped custab">
-                <thead>
-                <tr>
-                    <th>Id</th>
-                    <th>Name</th>
-                    <th class="text-center">Action</th>
+<div class="container" align="middle">
+    <div class="row col-md-6 col-md-offset-2 custyle">
+        <table class="table table-striped custab">
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>Name</th>
+                <th class="text-center">Action</th>
+            </tr>
+            </thead>
+            <tbody>
+            <c:forEach items="${faculties}" var="faculty">
+                <tr class="table">
+                    <td><c:out value="${faculty.id}"/></td>
+                    <td><c:out value="${faculty.name}"/></td>
+                    <td class="text-center">
+                        <a class='btn btn-info btn-xs' href="/faculties/edit/${faculty.id}">
+                            <span class="glyphicon glyphicon-edit"></span> Edit</a>
+                        <a href="/faculties/delete/${faculty.id}" class="btn btn-danger btn-xs"
+                           onclick="if (confirm('Are you sure you want to delete?'))
+                               form.action='/Config?pg=FIBiller&amp;cmd=delete'; else return false;"><span
+                                class="glyphicon glyphicon-remove" ></span> Del</a>
+                    </td>
                 </tr>
-                </thead>
-                <tbody>
-                <c:forEach items="${faculties}" var="faculty">
-                    <tr class="table" >
-                        <td><c:out value="${faculty.id}"/></td>
-                        <td><c:out value="${faculty.name}"/></td>
-                        <td class="text-center"><a class='btn btn-info btn-xs' href="#"><span
-                                class="glyphicon glyphicon-edit"></span> Edit</a> <a href="#" class="btn btn-danger btn-xs"><span
-                                class="glyphicon glyphicon-remove"></span> Del</a></td>
-                    </tr>
-                </c:forEach>
-                </tbody>
-            </table>
-        </div>
+            </c:forEach>
+            </tbody>
+        </table>
     </div>
+</div>
 <br>
 <jsp:include page="footer.jsp"/>
 </body>
