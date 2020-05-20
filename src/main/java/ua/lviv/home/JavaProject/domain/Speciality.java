@@ -1,6 +1,8 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import java.util.Set;
 
 @Entity
@@ -11,9 +13,11 @@ public class Speciality {
     @Column
     private int id;
 
+    @NotBlank
     @Column(unique=true)
     private String title;
 
+    @NotNull
     @Column(name = "enrollment_plan")
     private int enrollmentPlan;
 

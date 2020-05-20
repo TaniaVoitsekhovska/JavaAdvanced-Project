@@ -1,6 +1,7 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 import java.util.Set;
 
 @Entity
@@ -10,6 +11,7 @@ public class Faculty {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank
     @Column(unique=true)
     private String name;
 
