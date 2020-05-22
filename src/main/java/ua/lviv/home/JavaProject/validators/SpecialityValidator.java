@@ -7,7 +7,6 @@ import org.springframework.validation.Validator;
 import ua.lviv.home.JavaProject.domain.Speciality;
 
 @Component
-
 public class SpecialityValidator implements Validator {
     @Override
     public boolean supports(Class<?> clazz) {
@@ -20,9 +19,8 @@ public class SpecialityValidator implements Validator {
         if (StringUtils.isEmpty(specialityToValidate.getTitle())) {
             errors.rejectValue("title", "empty");
         }
-        if (specialityToValidate.getEnrollmentPlan() == 0 || specialityToValidate.getEnrollmentPlan() < 0
-                || specialityToValidate.getEnrollmentPlan() > 100) {
-            errors.rejectValue("enrollmentPlan", "enrollment");
-        }
+//        if (specialityToValidate.getTotalGrade()<0) {
+//            errors.rejectValue("title", "empty");
+//        }
     }
 }

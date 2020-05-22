@@ -11,19 +11,17 @@ import ua.lviv.home.JavaProject.domain.Subject;
 
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 @Repository
 @Transactional
-public interface SpecialityRepository extends JpaRepository<Speciality,Integer> {
-
-    Optional<Speciality> findByTitle(String title);
+public interface SpecialityRepository extends JpaRepository<Speciality, Integer> {
 
     @Modifying
-    @Query("update Speciality s set s.title = :title, s.enrollmentPlan=:enrollmentPlan where s.id=:id")
-    void updateSpecialityById(@Param("title") String title, @Param("enrollmentPlan") int enrollmentPlan,
-                              @Param("id") int id);
+    @Query("update Speciality s set s.title = :title where s.id=:id")
+    void updateSpecialityById(@Param("title") String title, @Param("id") int id);
 
     @Modifying
-    @Query("update Speciality s set s.subjects = :subjects where s.id=:id")
-    void updateSpecialityByIdSetSubjects(@Param("subjects")List<Subject> subjects, @Param("id") int id);
+    @Query("delete from Speciality s where s.id=:id")
+    void deleteSubjects(@Param("id") int id);
 }

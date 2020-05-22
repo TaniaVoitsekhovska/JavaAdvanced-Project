@@ -9,7 +9,7 @@
 <footer class="footer" >
     <div class="container">
         <p class="float-right"><a href="">Back to top</a></p>
-        <p class="float-left">&copy; 2020 Company, Inc. &middot; <a href="/contacts">Contacts</a> &middot; <a href="/contactUs">Contact US</a></p>
+        <%--<p class="float-left">&copy; 2020 Company, Inc. &middot; <a href="/contacts">Contacts</a> &middot; <a href="/contactUs">Contact US</a></p>--%>
     </div>
 </footer>
 </body>

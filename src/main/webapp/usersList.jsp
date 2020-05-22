@@ -8,15 +8,13 @@
 <html>
 <head>
     <title>Create Subject</title>
-    <link href="/css/app.css" rel="stylesheet" type="text/css">
-    <link href="<c:url value="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap.min.css"/>" rel="stylesheet"
-          id="bootstrap-css">
+    <link href="css/app.css" rel="stylesheet" type="text/css">
 </head>
 <body class="security-app">
 <jsp:include page="navbar.jsp"/>
-<div class="container">
+<div class="container" >
     <div class="row">
-        <div class="col-md-3">
+        <div class="col-md-12">
             <form action="#" method="get">
                 <div class="input-group">
                     <input class="form-control" id="system-search" name="q" placeholder="Search for" required>
@@ -27,6 +25,7 @@
                 </div>
             </form>
         </div>
+        <br>
         <div class="col-md-9">
             <table class="table table-list-search user-list">
                 <thead>
@@ -37,7 +36,9 @@
                     <th>Date of birth</th>
                     <th>Gender</th>
                     <th>Address</th>
+                    <th>Phone Number</th>
                     <th>Username</th>
+                    <th>Application is allowed status</th>
                     <%--<th>Email Verification</th>--%>
                 </tr>
                 </thead>
@@ -50,7 +51,9 @@
                     <td><c:out value="${user.dateOfBirth}"/></td>
                     <td><c:out value="${user.gender}"/></td>
                     <td><c:out value="${user.address}"/></td>
+                    <td><c:out value="${user.phoneNumber}"/></td>
                     <td><c:out value="${user.username}"/></td>
+                    <td>Application is allowed status</td>
                     <%--<td><c:out value="${user.isEmailVerified}"/></td>--%>
                 </tr>
                 </c:forEach>

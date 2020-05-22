@@ -2,8 +2,8 @@ package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
-import java.util.Set;
+import java.util.List;
+
 
 @Entity
 @Table(name = "speciality")
@@ -14,26 +14,22 @@ public class Speciality {
     private int id;
 
     @NotBlank
-    @Column(unique=true)
+    @Column(unique = true)
     private String title;
 
-    @NotNull
-    @Column(name = "enrollment_plan")
-    private int enrollmentPlan;
+    @ManyToMany
+    @JoinTable(name = "speciality_subjects",
+            joinColumns = @JoinColumn(name = "speciality_id"),
+            inverseJoinColumns = @JoinColumn(name = "subject_id"))
+    private List<Subject> subjects;
 
-
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "subject_speciality")
-    @MapKeyColumn(name = "subject_id")
-    private Set<Subject> subjects;
+    @Column
+    private Integer totalGrade;
 
     public Speciality() {
+        this.setTotalGrade(5);
     }
 
-    public Speciality(String title, int enrollmentPlan) {
-        this.title = title;
-        this.enrollmentPlan = enrollmentPlan;
-    }
 
     public int getId() {
         return id;
@@ -51,19 +47,19 @@ public class Speciality {
         this.title = title;
     }
 
-    public int getEnrollmentPlan() {
-        return enrollmentPlan;
-    }
-
-    public void setEnrollmentPlan(int enrollmentPlan) {
-        this.enrollmentPlan = enrollmentPlan;
-    }
-
-    public Set<Subject> getSubjects() {
+    public List<Subject> getSubjects() {
         return subjects;
     }
 
-    public void setSubjects(Set<Subject> subjects) {
+    public void setSubjects(List<Subject> subjects) {
         this.subjects = subjects;
+    }
+
+    public Integer getTotalGrade() {
+        return totalGrade;
+    }
+
+    public void setTotalGrade(Integer totalGrade) {
+        this.totalGrade = totalGrade;
     }
 }

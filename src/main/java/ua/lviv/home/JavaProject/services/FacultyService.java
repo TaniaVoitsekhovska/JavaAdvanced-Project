@@ -33,7 +33,8 @@ public class FacultyService {
         facultyRepository.deleteById(id);
     }
 
-    public void updateFaculty(int id, String name){
-        facultyRepository.updateFacultyById(name,id);
+    public void updateFaculty(int id, Faculty faculty){
+        facultyRepository.deleteById(id);
+        facultyRepository.save(faculty);
     }
 }

@@ -7,10 +7,8 @@ import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.validation.Validator;
 import org.springframework.validation.annotation.Validated;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.WebDataBinder;
+import org.springframework.web.bind.annotation.*;
 import ua.lviv.home.JavaProject.dtos.UserRegisterRequest;
 import ua.lviv.home.JavaProject.services.UserService;
 
@@ -25,6 +23,11 @@ public class RegistrationController {
                                   @Qualifier("userRegistrationRequestValidator") Validator validator) {
         this.userService = userService;
         this.validator = validator;
+    }
+
+    @InitBinder
+    protected void initBinder(WebDataBinder binder) {
+        binder.setValidator(validator);
     }
 
     @PostMapping("/register")

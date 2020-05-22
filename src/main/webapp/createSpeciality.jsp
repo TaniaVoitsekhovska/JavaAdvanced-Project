@@ -24,22 +24,45 @@
                        enctype="multipart/form-data">
                 <spring:bind path="title">
                     <div class="form-group">
-                        <label for="formGroupExampleInput">Title</label>
-                        <form:input path="title" type="text" id="formGroupExampleInput" class="form-control"
-                                    placeholder="title"
-                                    name="title" autofocus="true"/>
-                        <form:errors path="title" cssClass="error"/>
-                    </div>
-                </spring:bind>
-                <spring:bind path="enrollmentPlan">
-                    <div class="form-group">
-                        <label for="formGroupExampleInput2">Enrollment plan</label>
-                        <form:input path="enrollmentPlan" type="number" id="formGroupExampleInput2" class="form-control"
-                                    placeholder="enrollment plan" name="enrollmentPlan" autofocus="true"/>
-                        <form:errors path="enrollmentPlan" cssClass="error"/>
-                    </div>
+                    <label for="formGroupExampleInput">Title</label>
+                    <form:input path="title" type="text" id="formGroupExampleInput" class="form-control"
+                                placeholder="title"
+                                name="title" autofocus="true"/>
+                    <form:errors path="title" cssClass="error"/>
                 </spring:bind>
 
+                </div>
+                <label class="input-group-text" for="inputGroupSelect01">Select Subjects</label>
+                <br>
+
+                <select name="subjects" class="custom-select" id="inputGroupSelect01">
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                    </c:forEach>
+                </select>
+
+                <select name="subjects" class="custom-select" id="inputGroupSelect02">
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                    </c:forEach>
+                </select><br>
+                <select name="subjects" class="custom-select" id="inputGroupSelect03">
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                    </c:forEach>
+                </select><br>
+                <select name="subjects" class="custom-select" id="inputGroupSelect04">
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                    </c:forEach>
+                </select><br>
+                <select name="subjects" class="custom-select" id="inputGroupSelect05">
+                    <c:forEach items="${subjects}" var="subject">
+                        <option value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                    </c:forEach>
+                </select>
+                <br>
+                <br>
                 <br>
                 <input type="hidden" name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
@@ -53,22 +76,28 @@
 <br>
 <h2>All specialities</h2>
 <div class="container" align="middle">
-    <div class="row col-md-6 col-md-offset-2 custyle">
+    <div class="row col-md-13 col-md-offset-4 custyle">
         <table class="table table-striped custab">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Title</th>
-                <th>Enrollment Plan</th>
+                <th>Subject 1</th>
+                <th>Subject 2</th>
+                <th>Subject 3</th>
+                <th>Subject 4</th>
+                <th>Subject 5</th>
+                <th>Total Mark</th>
                 <th class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${specialities}" var="speciality">
                 <tr class="table">
-                    <td><c:out value="${speciality.id}"/></td>
                     <td><c:out value="${speciality.title}"/></td>
-                    <td><c:out value="${speciality.enrollmentPlan}"/></td>
+                    <c:forEach items="${speciality.subjects}" var="subject">
+                        <td><c:out value="${subject.name}"/></td>
+                    </c:forEach>
+                    <td><c:out value="${speciality.totalGrade}"/></td>
                     <td class="text-center">
                         <a class='btn btn-info btn-xs' href="/specialities/edit/${speciality.id}"><span
                                 class="glyphicon glyphicon-edit"></span> Edit</a>

@@ -1,14 +1,18 @@
 body.security-app {
     text-align: center;
     height: 100%;
-    width: 100%;
-    background: #edecec;
+    width:100%;
     padding-top: 70px;
+    background-image: url("https://www.qs.com/wp-content/uploads/2020/03/COVID-19-shaping-the-higher-education-sector.jpg");
+
+    -moz-background-size: cover;
+    -webkit-background-size: cover;
+    background-size: cover;
+    background-position: top center !important;
+    background-repeat: no-repeat !important;
+    background-attachment: fixed;
 }
 
-body.login {
-    background-image: url("https://www.google.com/url?sa=i&url=https%3A%2F%2Fquicksilvertranslate.com%2F4941%2Fthe-education-system-in-russia&psig=AOvVaw1nC2uCjDoTeU7YEpuEK51c&ust=1589898062549000&source=images&cd=vfe&ved=0CAIQjRxqFwoTCNjix_3NvekCFQAAAAAdAAAAABAD");
-}
 
 .lc-block {
     padding: 35px 55px 35px;
@@ -22,8 +26,8 @@ body.login {
     animation-duration: 300ms;
     animation-fill-mode: both;
     z-index: 10;
-    margin-top: 5%;
-    vertical-align: middle;
+    margin-top:5%;
+    vertical-align:middle;
 
 }
 
@@ -45,15 +49,7 @@ body.security-app:after {
     height: 100%;
 }
 
-h2 {
-    color: white;
-}
-
-h1 {
-    color: crimson;
-}
-
-input[type="text"], input[type="password"], input[type="email"], input[type="number"] {
+input[type="text"], input[type="password"]  {
     display: block;
     margin: 0;
     width: 100%;
@@ -76,44 +72,33 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
     transition: border 0.3s;
 }
 
-.button {
-    display: inline-block;
-    text-transform: uppercase;
-    padding: 1em 1.5em 0.75em;
-    border-radius: 2px;
-    font-weight: bold;
-    border: none;
-    color: #fff !important;
-    text-decoration: none;
-    font-family: 'Open Sans Condensed', sans-serif;
-    font-size: 14px;
-    line-height: 1;
-    cursor: pointer;
-    margin-right: 10px;
-    margin-top: 20px;
+.button{
+    display:inline-block;
+    text-transform:uppercase;
+    padding:1em 1.5em 0.75em;
+    border-radius:2px;
+    font-weight:bold;
+    border:none;color:#fff !important;
+    text-decoration:none;
+    font-family:'Open Sans Condensed',sans-serif;
+    font-size:14px;
+    line-height:1;
+    cursor:pointer;
+    margin-right:10px;
+    margin-top:20px;
 }
-
-.button:hover {
-    opacity: 0.9
+.button:hover{opacity:0.9}
+.button.green{
+    background-color:#a5d16d;
+    box-shadow:0 0 5px #a4cf6c inset, 0 1px 1px #eee
 }
-
-.button.green {
-    background-color: #a5d16d;
-    box-shadow: 0 0 5px #a4cf6c inset, 0 1px 1px #eee
+.button.red{
+    background-color:#f4836a;
+    box-shadow:0 0 5px #ef7f65 inset, 0 1px 1px #eee
 }
-
-.button.red {
-    background-color: #f4836a;
-    box-shadow: 0 0 5px #ef7f65 inset, 0 1px 1px #eee
-}
-
-.button.small {
-    font-size: 11px
-}
-
-.button.big {
-    font-size: 18px;
-    padding: 1.2em 2.5em 1em
+.button.small{font-size:11px}
+.button.big{
+    font-size:18px;padding:1.2em 2.5em 1em
 }
 
 .alert-danger {
@@ -126,7 +111,6 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
     border: 1px solid transparent;
     border-radius: 2px;
 }
-
 .alert-normal {
     padding: 15px;
     font-size: 16px;
@@ -138,6 +122,3 @@ input[type="text"], input[type="password"], input[type="email"], input[type="num
     color: #2196f3;
 }
 
-.user-list {
-    text-align: left;
-}

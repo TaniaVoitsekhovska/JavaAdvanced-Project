@@ -33,6 +33,21 @@
                     </div>
                 </spring:bind>
                 <br>
+                <select name="specialities" class="custom-select" id="inputGroupSelect02">
+                    <c:forEach items="${specialities}" var="speciality">
+                        <option value="${speciality.id}"><c:out value="${speciality.title}"></c:out></option>
+                    </c:forEach>
+                </select><br>
+                <select name="specialities" class="custom-select" id="inputGroupSelect02">
+                    <c:forEach items="${specialities}" var="speciality">
+                        <option value="${speciality.id}"><c:out value="${speciality.title}"></c:out></option>
+                    </c:forEach>
+                </select><br>
+                <select name="specialities" class="custom-select" id="inputGroupSelect02">
+                    <c:forEach items="${specialities}" var="speciality">
+                        <option value="${speciality.id}"><c:out value="${speciality.title}"></c:out></option>
+                    </c:forEach>
+                </select><br>
                 <input type="hidden" name="${_csrf.parameterName}"
                        value="${_csrf.token}"/>
                 <button type="submit" class="btn btn-primary">Save</button>
@@ -51,23 +66,28 @@
         <table class="table table-striped custab">
             <thead>
             <tr>
-                <th>Id</th>
                 <th>Name</th>
+                <th>Speciality 1</th>
+                <th>Speciality 2</th>
+                <th>Speciality 3</th>
                 <th class="text-center">Action</th>
             </tr>
             </thead>
             <tbody>
             <c:forEach items="${faculties}" var="faculty">
                 <tr class="table">
-                    <td><c:out value="${faculty.id}"/></td>
                     <td><c:out value="${faculty.name}"/></td>
+                    <c:forEach items="${faculty.specialities}" var="speciality">
+                        <td><c:out value="${speciality.title}"/></td>
+                    </c:forEach>
+
                     <td class="text-center">
                         <a class='btn btn-info btn-xs' href="/faculties/edit/${faculty.id}">
                             <span class="glyphicon glyphicon-edit"></span> Edit</a>
                         <a href="/faculties/delete/${faculty.id}" class="btn btn-danger btn-xs"
                            onclick="if (confirm('Are you sure you want to delete?'))
                                form.action='/Config?pg=FIBiller&amp;cmd=delete'; else return false;"><span
-                                class="glyphicon glyphicon-remove" ></span> Del</a>
+                                class="glyphicon glyphicon-remove"></span> Del</a>
                     </td>
                 </tr>
             </c:forEach>

@@ -10,21 +10,26 @@ import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.WebDataBinder;
 import org.springframework.web.bind.annotation.*;
 import ua.lviv.home.JavaProject.domain.Speciality;
+import ua.lviv.home.JavaProject.domain.Subject;
 import ua.lviv.home.JavaProject.services.SpecialityService;
+import ua.lviv.home.JavaProject.services.SubjectService;
 
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 
 @Controller
 public class SpecialityController {
 
     private final SpecialityService specialityService;
+    private final SubjectService subjectService;
     private final Validator validator;
 
     @Autowired
     public SpecialityController(SpecialityService specialityService,
-                                @Qualifier("specialityValidator") Validator validator) {
+                                SubjectService subjectService,
+                                @Qualifier("specialityValidator") Validator validator
+    ) {
         this.specialityService = specialityService;
+        this.subjectService = subjectService;
         this.validator = validator;
     }
 
@@ -36,21 +41,25 @@ public class SpecialityController {
     @GetMapping("/specialities/create")
     public String create(Model model) {
         model.addAttribute("specialityDto", new Speciality());
-        List<Speciality> specialities = specialityService.findAllSpecialities();
-        model.addAttribute("specialities", specialities);
+        model.addAttribute("specialities", specialityService.findAllSpecialities());
+        model.addAttribute("subjects", subjectService.findAllSubjects());
         return "createSpeciality";
     }
 
     @PostMapping("/specialities/save")
     public String save(Model model, @ModelAttribute("specialityDto") @Validated Speciality speciality,
-                       BindingResult bindingResult) {
-        if (bindingResult.hasErrors()) {
-            model.addAttribute("specialityDto", speciality);
-            List<Speciality> specialities = specialityService.findAllSpecialities();
-            model.addAttribute("specialities", specialities);
+                       BindingResult bindingResult,
+                       @RequestParam("subjects") List<Subject> subjectsIds) {
+
+        if (checkIfErrorsExist(model, bindingResult, speciality)) {
             return "createSpeciality";
         }
-        specialityService.save(speciality);
+        Integer grade = 0;
+        for (Subject sub : speciality.getSubjects()) {
+            grade += sub.getMaxGrade();
+        }
+        speciality.setTotalGrade(grade);
+        specialityService.save(speciality, subjectsIds);
         return "redirect:/specialities/create?success";
     }
 
@@ -65,18 +74,37 @@ public class SpecialityController {
         model.addAttribute("specialityDto", new Speciality());
 
         Speciality specialityToEdit = specialityService.findById(id);
-        model.addAttribute("speciality", Collections.singletonList(specialityToEdit));
-
+        Integer grade1 = 0;
+        for (Subject sub : specialityToEdit.getSubjects()) {
+            grade1 += sub.getMaxGrade();
+        }
+        specialityToEdit.setTotalGrade(grade1);
+        model.addAttribute("speciality", Arrays.asList(specialityToEdit));
+        model.addAttribute("subjectIds", specialityToEdit.getSubjects());
+        model.addAttribute("subjects", subjectService.findAllSubjects());
         return "editSpecialit";
     }
 
     @PostMapping("/specialities/save_edited")
     public String saveEdited(Model model, @ModelAttribute("specialityDto") @Validated Speciality speciality,
-                             BindingResult bindingResult) {
+                             BindingResult bindingResult, @RequestParam("subjectIds") List<Subject> subjectsIds) {
+
+
+
         if (checkIfErrorsExist(model, bindingResult, speciality)) {
             return "createSpeciality";
         }
-        specialityService.update(speciality.getTitle(), speciality.getEnrollmentPlan(), speciality.getId());
+
+        specialityService.deleteAllSubjects(speciality.getId());
+        Integer grade = 0;
+        Iterator<Subject> iterator=subjectsIds.iterator();
+        while (iterator.hasNext()){
+            grade+=iterator.next().getMaxGrade();
+        }
+
+        speciality.setTotalGrade(grade);
+        specialityService.save(speciality, subjectsIds);
+
         return "redirect:/specialities/create?success";
     }
 
@@ -86,8 +114,10 @@ public class SpecialityController {
             model.addAttribute("specialityDto", speciality);
             List<Speciality> specialities = specialityService.findAllSpecialities();
             model.addAttribute("specialities", specialities);
+            model.addAttribute("subjects", subjectService.findAllSubjects());
             return true;
         } else
             return false;
     }
+
 }
