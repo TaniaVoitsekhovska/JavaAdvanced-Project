@@ -31,16 +31,6 @@
                             <form:errors path="title" cssClass="error"/>
                         </div>
                     </spring:bind>
-                    <spring:bind path="enrollmentPlan">
-                        <div class="form-group">
-                            <label for="formGroupExampleInput2">Enrollment plan</label>
-                            <form:input path="enrollmentPlan" type="number" id="formGroupExampleInput2"
-                                        class="form-control"
-                                        placeholder="enrollment plan" name="enrollmentPlan" autofocus="true"
-                                        value="${speciality.enrollmentPlan}"/>
-                            <form:errors path="enrollmentPlan" cssClass="error"/>
-                        </div>
-                    </spring:bind>
                     <spring:bind path="id">
                         <div class="form-group">
                             <form:input type="hidden" path="id" id="formGroupExampleInput3" class="form-control"
@@ -48,7 +38,67 @@
                                         value="${speciality.id}"/>
                         </div>
                     </spring:bind>
+                    <%--<spring:bind path="totolGrade">--%>
+                        <div class="form-group">
+                            <form:input type="hidden" path="totalGrade" id="formGroupExampleInput3" class="form-control"
+                                        placeholder="totalGrade" name="totalGrade" autofocus="true"
+                                        value="${speciality.totalGrade}"/>
+                        </div>
+                    <%--</spring:bind>--%>
+                    <label class="input-group-text" for="inputGroupSelect01">Select Subjects</label>
+                    <br>
 
+                    <select name="subjectIds" class="custom-select" id="inputGroupSelect01">
+                        <c:forEach items="${subjects}" var="subject">
+                            <option
+                                    <c:forEach items="${subjectIds}" var="subjectId" varStatus="loop">
+                                        <c:if test="${subjectIds[0].id == subject.id}"> selected </c:if>
+                                    </c:forEach>
+
+                                    value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                        </c:forEach>
+                    </select>
+
+                    <select name="subjectIds" class="custom-select" id="inputGroupSelect02">
+                        <c:forEach items="${subjects}" var="subject">
+                            <option
+                                    <c:forEach items="${subjectIds}" var="subjectId" varStatus="loop">
+                                        <c:if test="${subjectIds[1].id == subject.id}"> selected </c:if>
+                                    </c:forEach>
+
+                                    value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                        </c:forEach>
+                    </select><br>
+                    <select name="subjectIds" class="custom-select" id="inputGroupSelect03">
+                        <c:forEach items="${subjects}" var="subject">
+                            <option
+                                    <c:forEach items="${subjectIds}" var="subjectId" varStatus="loop">
+                                        <c:if test="${subjectIds[2].id == subject.id}"> selected </c:if>
+                                    </c:forEach>
+
+                                    value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                        </c:forEach>
+                    </select><br>
+                    <select name="subjectIds" class="custom-select" id="inputGroupSelect04">
+                        <c:forEach items="${subjects}" var="subject">
+                            <option
+                                    <c:forEach items="${subjectIds}" var="subjectId" varStatus="loop">
+                                        <c:if test="${subjectIds[3].id == subject.id}"> selected </c:if>
+                                    </c:forEach>
+
+                                    value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                        </c:forEach>
+                    </select><br>
+                    <select name="subjectIds" class="custom-select" id="inputGroupSelect05">
+                        <c:forEach items="${subjects}" var="subject">
+                            <option
+                                    <c:forEach items="${subjectIds}" var="subjectId" varStatus="loop">
+                                        <c:if test="${subjectIds[4].id == subject.id}"> selected </c:if>
+                                    </c:forEach>
+
+                                    value="${subject.id}"><c:out value="${subject.name}"></c:out></option>
+                        </c:forEach>
+                    </select>
                     <br>
                     <input type="hidden" name="${_csrf.parameterName}"
                            value="${_csrf.token}"/>

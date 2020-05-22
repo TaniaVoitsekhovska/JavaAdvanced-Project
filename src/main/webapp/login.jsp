@@ -1,19 +1,21 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
          pageEncoding="UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags" %>
+<%@taglib uri="http://www.springframework.org/tags/form" prefix="form" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <link href="css/app.css" rel="stylesheet" type="text/css">
+    <link href="css/login.css" rel="stylesheet" type="text/css">
 </head>
-<body class="security-app">
+<body class="login security-app">
 <jsp:include page="navbar.jsp"/>
 <form action="${contextPath}/login" method='POST'>
 
     <div class="lc-block">
         <div>
             <input type="text" class="style-4" name="username"
-                   placeholder="User Name"/>
+                   placeholder="Username"/>
         </div>
         <div>
             <input type="password" class="style-4" name="password"

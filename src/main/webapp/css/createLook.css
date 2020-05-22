@@ -1,0 +1,99 @@
+body.security-app {
+    text-align: center;
+    height: 100%;
+    width:100%;
+    padding-top: 70px;
+    background: #a5d16d;
+}
+
+
+.lc-block {
+    padding: 35px 55px 35px;
+    background: #fff;
+    box-shadow: 0 1px 11px rgba(0, 0, 0, 0.27);
+    border-radius: 2px;
+    width: 30%;
+    display: inline-block;
+    position: relative;
+    animation-name: fadeInUp;
+    animation-duration: 300ms;
+    animation-fill-mode: both;
+    z-index: 10;
+    margin-top:5%;
+    vertical-align:middle;
+
+}
+
+body.security-app:before {
+    height: 50%;
+    width: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    content: "";
+    z-index: 0;
+}
+
+body.security-app:after {
+    content: "";
+    vertical-align: middle;
+    display: inline-block;
+    width: 1px;
+    height: 100%;
+}
+.container{
+    margin-top: 60px;
+}
+
+
+input[type="text"]  {
+    display: block;
+    margin: 0;
+    width: 100%;
+    font-family: "Open Sans", sans-serif;
+    font-size: 18px;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    -webkit-box-shadow: none;
+    -moz-box-shadow: none;
+    box-shadow: none;
+    -webkit-border-radius: none;
+    -moz-border-radius: none;
+    -ms-border-radius: none;
+    -o-border-radius: none;
+    border-radius: none;
+    padding: 10px;
+    border: none;
+    border-bottom: solid 2px #c9c9c9;
+    transition: border 0.3s;
+}
+
+.button{
+    display:inline-block;
+    text-transform:uppercase;
+    padding:1em 1.5em 0.75em;
+    border-radius:2px;
+    font-weight:bold;
+    border:none;color:#fff !important;
+    text-decoration:none;
+    font-family:'Open Sans Condensed',sans-serif;
+    font-size:14px;
+    line-height:1;
+    cursor:pointer;
+    margin-right:10px;
+    margin-top:20px;
+}
+
+.custab{
+    border: 1px solid #ccc;
+    padding: 5px;
+    margin: 5% 0;
+    box-shadow: 3px 3px 2px #ccc;
+    transition: 0.5s;
+}
+.custab:hover{
+    box-shadow: 3px 3px 0px transparent;
+    transition: 0.5s;
+}
+

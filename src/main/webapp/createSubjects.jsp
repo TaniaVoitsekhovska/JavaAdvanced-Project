@@ -58,7 +58,7 @@
         <table class="table table-striped custab">
             <thead>
             <tr>
-                <th>Id</th>
+                <th hidden>Id</th>
                 <th>Name</th>
                 <th>Max grade</th>
                 <th class="text-center">Action</th>
@@ -67,7 +67,7 @@
             <tbody>
             <c:forEach items="${subjects}" var="subject">
                 <tr class="table">
-                    <td><c:out value="${subject.id}"/></td>
+                    <td hidden><c:out value="${subject.id}"/></td>
                     <td><c:out value="${subject.name}"/></td>
                     <td><c:out value="${subject.maxGrade}"/></td>
                     <td class="text-center">
