@@ -1,36 +1,72 @@
 package ua.lviv.home.JavaProject.domain;
 
+import org.springframework.format.annotation.DateTimeFormat;
+import org.springframework.web.multipart.MultipartFile;
+
 import javax.persistence.*;
-import java.time.LocalDate;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.Set;
 
 @Entity
 @Table(name = "users")
-public class User {
+public class User implements Serializable {
+
+    private static final long serialVersionUID = 1L;
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
+    @NotBlank
     @Column(name = "first_name")
     private String firstName;
 
+    @NotBlank
     @Column(name = "last_name")
     private String lastName;
 
-    @Column(unique=true)
+    @NotBlank
+    @Email(message = "Please enter a valid e-mail address")
+    @Column(unique = true)
     private String email;
 
-    @Column(unique=true)
+    @NotBlank
+    @Column(unique = true)
     private String password;
 
-    private LocalDate dateOfBirth;
+    @NotBlank
+    @DateTimeFormat(pattern = "mm/DD/yyyy")
+    @Column(name = "date_of_birth")
+    private String dateOfBirth;
 
+    @NotBlank
     private String gender;
 
+    @NotBlank
     private String address;
 
-    @Column(unique=true)
+    @NotNull
+    @Column(name = "phone_number")
+    private Long phoneNumber;
+
+    @NotBlank(message = "Cannot be empty!")
+    @Column(unique = true)
     private String username;
+
+    @Lob
+    private String image;
+
+    @Transient
+    private MultipartFile file;
+    public MultipartFile getFile() {
+        return file;
+    }
+    public void setFile(MultipartFile file) {
+        this.file = file;
+    }
 
     private boolean isEmailVerified;
 
@@ -44,16 +80,29 @@ public class User {
     public User() {
     }
 
-    public User(String firstName, String lastName, String email, String password,
-                LocalDate dateOfBirth, String gender, String address, String username) {
+    public User(String firstName, String lastName, String email, String dateOfBirth, String gender,
+                String address, Long phoneNumber, String username) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.email = email;
-        this.password = password;
         this.dateOfBirth = dateOfBirth;
         this.gender = gender;
         this.address = address;
+        this.phoneNumber = phoneNumber;
         this.username = username;
+    }
+
+    public User(String firstName, String lastName, String email, String dateOfBirth, String gender,
+                String address, Long phoneNumber, String username, String image) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.email = email;
+        this.dateOfBirth = dateOfBirth;
+        this.gender = gender;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.username = username;
+        this.image = image;
     }
 
     public int getId() {
@@ -96,11 +145,11 @@ public class User {
         this.password = password;
     }
 
-    public LocalDate getDateOfBirth() {
+    public String getDateOfBirth() {
         return dateOfBirth;
     }
 
-    public void setDateOfBirth(LocalDate dateOfBirth) {
+    public void setDateOfBirth(String dateOfBirth) {
         this.dateOfBirth = dateOfBirth;
     }
 
@@ -120,12 +169,28 @@ public class User {
         this.address = address;
     }
 
+    public Long getPhoneNumber() {
+        return phoneNumber;
+    }
+
+    public void setPhoneNumber(Long phoneNumber) {
+        this.phoneNumber = phoneNumber;
+    }
+
     public String getUsername() {
         return username;
     }
 
     public void setUsername(String username) {
         this.username = username;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 
     public Set<AccessLevel> getRoles() {

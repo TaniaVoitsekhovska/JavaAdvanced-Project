@@ -53,4 +53,5 @@ public class Subject {
     public void setMaxGrade(int maxGrade) {
         this.maxGrade = maxGrade;
     }
+
 }

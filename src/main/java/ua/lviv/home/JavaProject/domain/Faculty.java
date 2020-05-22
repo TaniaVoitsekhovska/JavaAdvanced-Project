@@ -2,6 +2,7 @@ package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.util.List;
 import java.util.Set;
 
 @Entity
@@ -15,17 +16,14 @@ public class Faculty {
     @Column(unique=true)
     private String name;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "speciality_faculty")
-    @MapKeyColumn(name = "speciality_id")
-    private Set<Speciality> specialities;
+    @ManyToMany
+    @JoinTable(name = "faculty_specialities",
+            joinColumns = @JoinColumn(name = "faculty_id"),
+            inverseJoinColumns = @JoinColumn(name = "speciality_id"))
+    private List<Speciality> specialities;
 
 
     public Faculty() {
-    }
-
-    public Faculty(String name) {
-        this.name = name;
     }
 
     public int getId() {
@@ -44,11 +42,11 @@ public class Faculty {
         this.name = name;
     }
 
-    public Set<Speciality> getSpecialities() {
+    public List<Speciality> getSpecialities() {
         return specialities;
     }
 
-    public void setSpecialities(Set<Speciality> specialities) {
+    public void setSpecialities(List<Speciality> specialities) {
         this.specialities = specialities;
     }
 }
