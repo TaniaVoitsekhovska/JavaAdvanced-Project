@@ -1,6 +1,7 @@
 package ua.lviv.home.JavaProject.domain;
 
 import javax.persistence.*;
+import java.util.List;
 import java.util.Map;
 
 @Entity
@@ -12,15 +13,12 @@ public class Application {
     private int id;
 
     @ManyToOne
-    @JoinColumn(name = "applicant_id", nullable = false)
-    private Applicant applicant;
+    @JoinColumn(name = "user_id", nullable = false)
+    private User user;
 
-    @ElementCollection(fetch = FetchType.EAGER)
-    @CollectionTable(name = "marks")
-    @MapKeyColumn(name = "subject_id")
-    @Column(name = "mark")
-    private Map<Subject, Integer> marks;
-
+    @OneToOne
+    @JoinColumn(name = "speciality_id", nullable = false)
+    private Speciality speciality;
 
     @Column
     private int totalMark;
@@ -29,9 +27,6 @@ public class Application {
     public Application() {
     }
 
-    public Application(Applicant applicant) {
-        this.applicant = applicant;
-    }
 
     public int getId() {
         return id;
@@ -41,12 +36,12 @@ public class Application {
         this.id = id;
     }
 
-    public Applicant getApplicant() {
-        return applicant;
+    public User getUser() {
+        return user;
     }
 
-    public void setApplicant(Applicant applicant) {
-        this.applicant = applicant;
+    public void setUser(User user) {
+        this.user = user;
     }
 
     public int getTotalMark() {
@@ -57,11 +52,11 @@ public class Application {
         this.totalMark = totalMark;
     }
 
-    public Map<Subject, Integer> getMarks() {
-        return marks;
+    public Speciality getSpeciality() {
+        return speciality;
     }
 
-    public void setMarks(Map<Subject, Integer> marks) {
-        this.marks = marks;
+    public void setSpeciality(Speciality speciality) {
+        this.speciality = speciality;
     }
 }
