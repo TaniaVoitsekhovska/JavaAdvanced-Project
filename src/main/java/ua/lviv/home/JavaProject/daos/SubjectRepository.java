@@ -8,14 +8,17 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import ua.lviv.home.JavaProject.domain.Subject;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
 @Transactional
 public interface SubjectRepository extends JpaRepository<Subject, Integer> {
-    Optional<Subject> findByName(String name);
 
-@Modifying
-@Query("update Subject s set s.name = :name, s.maxGrade=:maxGrade where s.id=:id")
-void updateSubjectById(@Param("name") String name, @Param("maxGrade") int maxGrade,@Param("id") int id);
+    @Modifying
+    @Query("update Subject s set s.name = :name, s.maxGrade=:maxGrade where s.id=:id")
+    void updateSubjectById(@Param("name") String name, @Param("maxGrade") int maxGrade, @Param("id") int id);
+
+    @Query("SELECT COUNT(s.maxGrade) FROM Subject s WHERE s.id in :ids")
+    Integer enrollmentPlan(@Param("ids") List<Integer> ids);
 }

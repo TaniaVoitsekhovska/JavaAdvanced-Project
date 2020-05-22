@@ -14,8 +14,6 @@ import java.util.Optional;
 @Transactional
 public interface FacultyRepository extends JpaRepository<Faculty, Integer> {
 
-    Optional<Faculty> findByName(String name);
-
     @Modifying
     @Query("update Faculty f set f.name = :name where f.id=:id")
     void updateFacultyById(@Param("name") String name, @Param("id") int id);
