@@ -8,7 +8,6 @@ import ua.lviv.home.JavaProject.daos.SubjectRepository;
 import ua.lviv.home.JavaProject.domain.Subject;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 public class SubjectService {
