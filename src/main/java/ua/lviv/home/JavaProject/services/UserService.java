@@ -30,7 +30,7 @@ public class UserService {
     }
 
     public void save(UserRegisterRequest userRegisterRequest) {
-        LOG.trace("Creating new User");
+        LOG.info("Creating new User");
         User user = new User();
         user.setFirstName(userRegisterRequest.getFirstName());
         user.setLastName(userRegisterRequest.getLastName());
@@ -57,20 +57,24 @@ public class UserService {
     }
 
     public Optional<User> findByUsername(String name) {
+        LOG.info(String.format("Getting User by username %s from database.", name));
         return userRepository.findByUsername(name);
     }
 
     public User findById(int id) {
+        LOG.info(String.format("Getting User by id %d from database.", id));
         return userRepository.findById(id).orElse(null);
     }
 
     public List<User> findAll() {
+        LOG.info("Getting all users from database.");
         return userRepository.findAll();
     }
 
     public void confirmEmail(String hash) {
         userRepository.findByVerifyEmailHash(hash)
                 .ifPresent(user -> userRepository.confirmEmail(user.getId()));
+        LOG.info(String.format("Successfully confirmed email  by hash %s ",hash));
     }
     public  void saveImage(String image, int id){
         userRepository.updateImageByUserId(image,id);
@@ -78,9 +82,10 @@ public class UserService {
     }
 
     public void updateUser(User user) {
-
+        LOG.info(String.format("Updating User with id %d ",user.getId()));
         userRepository.updateUser(user.getFirstName(), user.getLastName(), user.getEmail(),
                 user.getDateOfBirth(), user.getPhoneNumber(), user.getAddress(), user.getUsername(), user.getGender(),
                 user.getId());
+        LOG.info(String.format("Successfully updated User with id %d ",user.getId()));
     }
 }
