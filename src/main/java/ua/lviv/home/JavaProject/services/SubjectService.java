@@ -13,7 +13,7 @@ import java.util.Optional;
 @Service
 public class SubjectService {
 
-    private static final Logger LOG = LoggerFactory.getLogger(UserService.class);
+    private static final Logger LOG = LoggerFactory.getLogger(SubjectService.class);
 
     private final SubjectRepository subjectRepository;
 
@@ -28,10 +28,12 @@ public class SubjectService {
     }
 
     public Subject findSubjectById(int id) {
+        LOG.info(String.format("Getting Subject with id %d from database ",id));
         return subjectRepository.findById(id).orElse(null);
     }
 
     public List<Subject> findAllSubjects() {
+        LOG.info("Getting all subjects from database");
         return subjectRepository.findAll();
     }
 

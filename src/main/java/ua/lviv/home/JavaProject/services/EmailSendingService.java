@@ -1,5 +1,7 @@
 package ua.lviv.home.JavaProject.services;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.mail.SimpleMailMessage;
@@ -8,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 @Service
 public class EmailSendingService {
+    private static final Logger LOG = LoggerFactory.getLogger(EmailSendingService.class);
 
     @Autowired
     private JavaMailSender mailSender;
@@ -31,8 +34,9 @@ public class EmailSendingService {
         try {
             mailSender.send(simpleMailMessage);
         } catch (Exception e) {
+            LOG.error(String.format("Couldn't send email for verification was sent to user by @s.", userEmail));
             e.printStackTrace();
         }
-
+        LOG.info(String.format("Email for verification was sent to user by @s.", userEmail));
     }
 }
